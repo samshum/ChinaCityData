@@ -1,0 +1,63 @@
+//http://xzqh.mca.gov.cn/selectJson 
+//Form Data: shengji=河北省（冀）&diji=保定市
+
+//[General]
+//Request URL: http://xzqh.mca.gov.cn/selectJson
+//Request Method: POST
+//Status Code: 200 
+//Remote Address: 202.108.98.30:80
+//Referrer Policy: strict-origin-when-cross-origin
+
+//[Response Headers]
+//Content-Length: 2037
+//Date: Sun, 01 Jan 2023 08:56:09 GMT
+
+//[Request Headers]
+//Accept: application/json, text/javascript, */*; q=0.01
+//Accept-Encoding: gzip, deflate
+//Accept-Language: en,en-US;q=0.9,zh-CN;q=0.8,zh;q=0.7
+//Connection: keep-alive
+//Content-Length: 26
+//Content-Type: application/x-www-form-urlencoded; charset=UTF-8
+//Cookie: JSESSIONID=CF3F1AEE362FECE5D9C2E5E834BFAC7C; _gscu_266093035=72562114jzcsq716; _gscbrs_266093035=1; _gscs_266093035=72562114utdh3t16|pv:11
+//DNT: 1
+//Host: xzqh.mca.gov.cn
+//Origin: http://xzqh.mca.gov.cn
+//Referer: http://xzqh.mca.gov.cn/map
+//User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+//X-Requested-With: XMLHttpRequest
+
+[
+  {
+    "children": [],
+    "diji": "",
+    "quHuaDaiMa": "130602",
+    "quhao": "0312",
+    "shengji": "",
+    "xianji": "竞秀区"
+  },
+  {
+    "children": [],
+    "diji": "",
+    "quHuaDaiMa": "130606",
+    "quhao": "0312",
+    "shengji": "",
+    "xianji": "莲池区"
+  },
+  {
+    "children": [],
+    "diji": "",
+    "quHuaDaiMa": "130607",
+    "quhao": "0312",
+    "shengji": "",
+    "xianji": "满城区"
+  },
+  {
+    "children": [],
+    "diji": "",
+    "quHuaDaiMa": "130608",
+    "quhao": "0312",
+    "shengji": "",
+    "xianji": "清苑区"
+  }
+]
