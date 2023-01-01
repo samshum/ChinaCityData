@@ -1,6 +1,9 @@
 # ChinaCityData
 # 获取国内行政区域
-  **源
+>1. 行政区域， 省->市->区 
+>2. GPS定位信息
+
+  **源**
   ~~~
   https://xzqh.mca.gov.cn/
   ~~~
