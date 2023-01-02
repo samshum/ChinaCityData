@@ -69,7 +69,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="data\corecity_geo.json" />
+    <Content Include="data\corecity_geo.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="data\readme.txt" />
     <Content Include="data\province_index.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
