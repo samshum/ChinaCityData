@@ -89,6 +89,10 @@ namespace ChinaCityData
 
         public string Get(string Url, string httpMethod, string httpContent, Encoding httpCode)
         {
+            setUrl= setUrl;
+            setMethod= httpMethod;
+            setEncoding= httpCode;
+
             if (string.IsNullOrWhiteSpace(Url) || string.IsNullOrWhiteSpace(httpMethod))
             {
                 throw new ArgumentException("Url or HttpMethod 参数不能为空！");
@@ -99,6 +103,7 @@ namespace ChinaCityData
             HttpWebRequest request = null;
             HttpWebResponse response = null;
             StreamWriter sw = null;
+            HttpStatusCode StateCode = HttpStatusCode.NotFound;
             try
             {
                 ServicePointManager.DefaultConnectionLimit = 512;
@@ -106,7 +111,7 @@ namespace ChinaCityData
                 request.Method = httpMethod;
                 request.AllowAutoRedirect = true;
                 request.KeepAlive = false;
-                request.Referer = setReferer;
+                if(setReferer != null) request.Referer = setReferer;
                 request.Accept = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; .NET CLR 2.0.50727; Maxthon 2.0)";
                 request.ContentType = setContentType; //"application/octet-stream";
                 request.Proxy = null;
@@ -123,6 +128,7 @@ namespace ChinaCityData
                 if (res != null)
                 {
                     response = res as HttpWebResponse;
+                    StateCode = response.StatusCode;
                     if (this.DownloadStart != null)
                         this.DownloadStart((int)response.StatusCode);
 
@@ -141,7 +147,7 @@ namespace ChinaCityData
                 }
             }
             catch (WebException webe) { 
-                Console.WriteLine(webe.Message);
+                Console.WriteLine(webe.Status + ": " + webe.Message+"["+ Url + "]");
             }
             finally
             {

@@ -10,7 +10,12 @@ namespace ChinaCityData
     internal class Http
     {
         private static HttpRequest web = new HttpRequest();
+
         public static string Get(string url) { 
+            return Get(url, null);
+        }
+        public static string Get(string url, string refererUri) { 
+            web.setReferer = refererUri;
             return web.Get(url);
         }
 

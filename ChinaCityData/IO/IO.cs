@@ -16,9 +16,40 @@ namespace ChinaCityData
             }
             
         }
-         
+
+        /// <summary>
+        /// 获取目录文件列表
+        /// </summary>
+        /// <param name="dirPath">目录路径</param>
+        /// <param name="isOnlyFilenameWithOutExtension">是否只获取文件名(不包含扩展名)</param>
+        /// <returns></returns>
+        public static string[] DirFiles(string dirPath, bool isOnlyFilenameWithOutExtension)
+        {
+            string[] dirs = null;
+            string comPath = Path.Combine(GetBasePath, dirPath);
+            if (Directory.Exists(comPath)) {
+                string[] files =  Directory.GetFiles(comPath);
+                if (!isOnlyFilenameWithOutExtension)
+                {
+                    dirs = files;
+                }
+                else {
+                    dirs = new string[files.Length];
+                    for (int i=0; i< files.Length; i++) {
+                        FileInfo fi = new FileInfo(files[i]);
+                        dirs[i] = fi.Name.Replace(fi.Extension, "");
+                    }
+                }
+            }
+            return dirs;
+        }
+        
         public static string Read(string filePath) {
-            StreamReader sr = new StreamReader(Path.Combine(GetBasePath, filePath), Encoding.UTF8);
+            string comPath = Path.Combine(GetBasePath, filePath);
+            if (!File.Exists(comPath)) {
+                return null;
+            }
+            StreamReader sr = new StreamReader(comPath, Encoding.UTF8);
             String line;
             StringBuilder sb = new StringBuilder();
             while ((line = sr.ReadLine()) != null)
