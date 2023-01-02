@@ -9,7 +9,7 @@ namespace ChinaCityData
     /// <summary>
     /// 基本模型
     /// </summary>
-    internal class BaseModel
+    public class BaseModel
     {
 
         /// <summary>

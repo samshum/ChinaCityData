@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ChinaCityData.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,11 +24,13 @@ namespace ChinaCityData
             bool isShowMenu = true;
             while (isShowMenu)
             {
-                Console.WriteLine("根据序号选择操作菜单： (注意：第一次运行程序需按序号小到大执行!)");
+                Console.WriteLine("根据序号选择操作菜单：");
+                Console.WriteLine("**********注意：第一次运行需按序号顺序执行!**********");
                 Console.WriteLine("1. 获取全国各个省的数据");
                 Console.WriteLine("2. 获取省各个市的数据");
                 Console.WriteLine("3. 获取省和各个市GEO定位数据");
                 Console.WriteLine("4. 获取市、县的Magnetics数据");
+                Console.WriteLine("5. 重级数据生成List<Point>模型");
                 Console.WriteLine("0. 退出应用 ");
                 String getOption = Console.ReadLine();
 
@@ -52,6 +55,11 @@ namespace ChinaCityData
                         Console.WriteLine("开始获取各个市、县的Magnetics数据.........");
                         getCitysMagnetic();
                         Console.WriteLine("市、县Magnetics数据，获取完成！");
+                        break;
+                    case "5":
+                        Console.WriteLine("重级数据生成List<Point>模型.........");
+                        GeneratorPointModel();
+                        Console.WriteLine("List<Point>模型生成完成！");
                         break;
                     case "0":
                         isShowMenu = false;
@@ -233,6 +241,83 @@ namespace ChinaCityData
                 }
             });
         }
+
+
+       /// <summary>
+        /// 读取GEO数据
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        private static List<Model.Point> getChildens(string code) {
+            List<Model.Point>  childens = new List<Model.Point>();
+            string cityData = IO.Read("./data/geos/" + code + ".json");
+            if (cityData != null)
+            {
+                var areas = JsonConvert.DeserializeObject<Magnetic>(cityData);
+                foreach (Feature a in areas.features)
+                {
+                    childens.Add(
+                        new Model.Point()
+                        {
+                            Title = a.properties.NAME,
+                            Code = a.properties.QUHUADAIMA,
+                            Geo = a.geometry.coordinates,
+                            Declination = getDeclination(a.properties.QUHUADAIMA)
+                        }
+                    );
+                }
+            }
+            return childens;
+        }
+
+        private static double getDeclination(string code) {
+            double result = 0;
+            string mfile = IO.Read("./data/magnetics/" + code + ".json");
+            if(mfile != null) {
+                MagneticResult m = JsonConvert.DeserializeObject<MagneticResult>(mfile);
+                result = m.result[0].declination;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 重级数据生成List<Point> 模型
+        /// </summary>
+        private static void GeneratorPointModel() {
+            List<Model.Point> points = new List<Model.Point>();
+
+            string provincesData = IO.Read("./data/province_index.json");
+            var provinces = JsonConvert.DeserializeObject<List<BaseModel>>(provincesData);
+
+            // Get省
+            provinces.ForEach(p =>
+            {
+                points.Add(new Model.Point()
+                {
+                    Title = p.shengji,
+                    Code = p.quHuaDaiMa
+                });
+            });
+
+            // Get市
+            points.ForEach(p => {
+                p.Childens = getChildens(p.Code);
+            });
+
+            // Get区县
+            points.ForEach(p => {
+                foreach (Model.Point c in p.Childens) {
+                    c.Childens = getChildens(c.Code);
+                }
+            });
+
+            string objString = JsonConvert.SerializeObject(points, Newtonsoft.Json.Formatting.Indented);
+            Console.WriteLine(objString);
+            IO.Write(objString, "./data/objects.json");
+            IO.Serialization<List<Model.Point>>(points, "./data/object.dat");
+        }
+
+ 
 
     }
 }

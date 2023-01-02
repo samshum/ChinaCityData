@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -86,5 +88,25 @@ namespace ChinaCityData
                 }
             }
         }
+
+        public static void Serialization<T>(T obj, string savePath)
+        {
+            string comPath = Path.Combine(GetBasePath, savePath);
+            FileStream fs = new FileStream(comPath, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            try
+            {
+                formatter.Serialize(fs, obj);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Failed to serialize. Reason: " + e.Message);
+            }
+            finally
+            {
+                fs.Close();
+            }
+        }
+
     }
 }
