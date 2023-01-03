@@ -57,7 +57,6 @@
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Magnetic.cs" />
     <Compile Include="Model\MagneticResult.cs" />
-    <Compile Include="Model\Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Net\Http.cs" />
@@ -91,6 +90,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\ChinaCityData.Model\ChinaCityData.Model.csproj">
+      <Project>{1236853b-520c-4f6c-8075-2654e9821b26}</Project>
+      <Name>ChinaCityData.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
