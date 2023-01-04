@@ -5,13 +5,13 @@
 	http://xzqh.mca.gov.cn/data/quanguo_Point.geojson
 
 
-数据集归属关系：
+一、数据集归属关系：
 
-省列表(province_index.json) -> 市数据(provinces) -> 区县数据(City)
-                                   |                    |
-                                   V                    V
-                                  GEO                  GEO
-                                Magnetic             Magnetic
+    省列表(province_index.json) -> 市数据(provinces) -> 区县数据(City)
+                                       |                    |
+                                       V                    V
+                                      GEO                  GEO
+                                    Magnetic             Magnetic
 
-
-                                     
+二、geos & magnetics 包括省440000和市440100的数据
+       

@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "name": "点",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "台湾",
+        "QUHUADAIMA": "710100",
+        "Location": 1,
+        "Alignment": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.63235749218748,
+          24.009395795777255
+        ]
+      }
+    }
+  ]
+}

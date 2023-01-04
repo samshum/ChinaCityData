@@ -251,7 +251,7 @@
     "children": [],
     "diji": "",
     "quHuaDaiMa": "810000",
-    "quhao": "00852",
+    "quhao": "NULL",
     "shengji": "香港特别行政区（港）",
     "xianji": ""
   },
@@ -259,7 +259,7 @@
     "children": [],
     "diji": "",
     "quHuaDaiMa": "820000",
-    "quhao": "00853",
+    "quhao": "NULL",
     "shengji": "澳门特别行政区（澳）",
     "xianji": ""
   },
@@ -267,7 +267,7 @@
     "children": [],
     "diji": "",
     "quHuaDaiMa": "710000",
-    "quhao": "",
+    "quhao": "NULL",
     "shengji": "台湾省（台）",
     "xianji": ""
   }

@@ -1,0 +1,22 @@
+{
+  "type": "FeatureCollection",
+  "name": "点",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "澳门",
+        "QUHUADAIMA": "820100",
+        "Location": 1,
+        "Alignment": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.54480256054686,
+          22.1561797201359
+        ]
+      }
+    }
+  ]
+}

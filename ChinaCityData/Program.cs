@@ -313,8 +313,8 @@ namespace ChinaCityData
 
             string objString = JsonConvert.SerializeObject(points, Newtonsoft.Json.Formatting.Indented);
             Console.WriteLine(objString);
-            IO.Write(objString, "./data/objects.json");
-            IO.Serialization<List<Model.Point>>(points, "./data/object.dat");
+            IO.Write(objString, "./data/magneticObject.json");
+            IO.Serialization<List<Model.Point>>(points, "./data/magneticObject.dat");
         }
 
  
